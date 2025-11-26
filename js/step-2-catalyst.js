@@ -113,19 +113,6 @@
       });
     }
 
-
-        // Switch to Synthesis tab
-        var synthTab = document.querySelector('.ft-step-tabs button[data-tab="synthesis"]');
-        var synthPanel = document.querySelector('.ft-step-panel[data-panel="synthesis"]');
-
-        tabButtons.forEach(function (b) { b.classList.remove("active"); });
-        panels.forEach(function (panel) { panel.classList.remove("active"); });
-
-        if (synthTab) synthTab.classList.add("active");
-        if (synthPanel) synthPanel.classList.add("active");
-      });
-    }
-
     // --- Save Ethical Tug to global state ---
     if (saveButton) {
       saveButton.addEventListener("click", function () {
