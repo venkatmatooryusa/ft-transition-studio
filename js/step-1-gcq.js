@@ -3,61 +3,152 @@
 
   // Internal helper: update the Plan tab based on GCQ level
   function updateGCQPlanInternal() {
-    var planBox = document.getElementById("gcq-plan-content");
-    if (!planBox) return;
+  var planBox = document.getElementById("gcq-plan-content");
+  if (!planBox) return;
 
-    var gcq = window.TransitionPlan.gcq;
-    if (!gcq || !gcq.level) {
-      // Default message when GCQ hasn't been run yet
-      planBox.innerHTML =
-        '<h3 style="margin-top:0;margin-bottom:0.5rem;font-size:1rem;color:#fbbf24;">Your GCQ Action Plan</h3>' +
-        '<p style="margin-bottom:0.75rem;color:#cbd5e1;">Complete the GCQ in the <strong>Assessment</strong> tab to see a tailored action plan here.</p>' +
-        '<ul style="margin:0.5rem 0 0.25rem 1.2rem;color:#cbd5e1;font-size:0.85rem;">' +
-        '<li><strong>High GCQ:</strong> You are strongly Golden Cage bound. Step 2 becomes urgent.</li>' +
-        '<li><strong>Moderate GCQ:</strong> You are in tension. Small, deliberate shifts matter.</li>' +
-        '<li><strong>Low GCQ:</strong> You are relatively aligned. Protect and deepen that alignment.</li>' +
-        '</ul>' +
-        '<p style="margin-top:0.75rem;color:#22d3ee;font-size:0.85rem;">Once you calculate your GCQ, this plan will update with specific guidance based on your result.</p>';
-      return;
-    }
+  var gcq = window.TransitionPlan.gcq;
 
-    var level = gcq.level; // "high", "moderate", "low"
-    var title = "Your GCQ Action Plan";
-    var body = "";
-    var bullets = "";
-
-    if (level === "high") {
-      body =
-        "Your Golden Cage Quotient is <strong>high</strong>. External pressure, status, and structural expectations are driving your career more than your inner purpose. The objective now is not to resign overnight, but to create space for honest diagnosis and future pivots.";
-      bullets =
-        "<li>Explicitly name your Golden Cage patterns (status, Sacred Debt, conformity) using your radar chart.</li>" +
-        "<li>Block a small, recurring time window each week that is not owned by your current employer or CV.</li>" +
-        "<li>Commit to completing Step 2 (Catalyst Conversations) within the next 7 days.</li>" +
-        "<li>Share your GCQ insights with one trusted person who will hold you to your future self.</li>";
-    } else if (level === "moderate") {
-      body =
-        "Your Golden Cage Quotient is <strong>moderate</strong>. You are living in tension between the Golden Cage and your desire for purpose. You are not fully trapped, but drifting is dangerous if you do nothing.";
-      bullets =
-        "<li>Circle the 2–3 axes on your radar chart where you feel the most inner friction.</li>" +
-        "<li>Design one small experiment at work that moves you slightly closer to your Ethical Tug.</li>" +
-        "<li>Use Step 2 (Catalyst Conversations) to turn vague restlessness into a precise Ethical Tug statement.</li>" +
-        "<li>Start a simple log in the Review tab whenever you notice Golden Cage decisions.</li>";
-    } else { // low
-      body =
-        "Your Golden Cage Quotient is <strong>low</strong>. You are relatively purpose-aligned already. The goal is to protect this alignment and deepen your contribution with more structural integrity.";
-      bullets =
-        "<li>Note which axes on your radar chart are already close to the center (low Golden Cage) and why.</li>" +
-        "<li>Identify one area where you still feel some compromise and name it clearly.</li>" +
-        "<li>Use Step 2 to sharpen your Ethical Tug so that your future choices stay anchored.</li>" +
-        "<li>Design one practice or boundary that will prevent future drift back into the Golden Cage.</li>";
-    }
-
-    planBox.innerHTML =
-      '<h3 style="margin-top:0;margin-bottom:0.5rem;font-size:1rem;color:#fbbf24;">' + title + '</h3>' +
-      '<p style="margin-bottom:0.75rem;color:#cbd5e1;font-size:0.9rem;">' + body + '</p>' +
-      '<ul style="margin:0.5rem 0 0.25rem 1.2rem;color:#cbd5e1;font-size:0.85rem;">' + bullets + '</ul>' +
-      '<p style="margin-top:0.75rem;color:#22d3ee;font-size:0.85rem;">Your next move is to continue into Step 2 (Catalyst Conversations) and turn this awareness into a clear Ethical Tug.</p>';
+  // Helper to interpret axis score
+  function axisBand(score) {
+    if (score >= 4) return "High Golden Cage pressure";
+    if (score >= 2.5) return "Moderate pressure";
+    return "Low pressure";
   }
+
+  // If GCQ not yet run, show generic guidance
+  if (!gcq || !gcq.level) {
+    planBox.innerHTML =
+      '<h3 style="margin-top:0;margin-bottom:0.5rem;font-size:1rem;color:#fbbf24;">Your GCQ Action Plan</h3>' +
+      '<p style="margin-bottom:0.75rem;color:#cbd5e1;">Complete the GCQ in the <strong>Assessment</strong> tab to see a tailored action plan and a breakdown of your radar plot here.</p>' +
+      '<ul style="margin:0.5rem 0 0.25rem 1.2rem;color:#cbd5e1;font-size:0.85rem;">' +
+      '<li><strong>High GCQ:</strong> You are strongly Golden Cage bound. Step 2 becomes urgent.</li>' +
+      '<li><strong>Moderate GCQ:</strong> You are in tension. Small, deliberate shifts matter.</li>' +
+      '<li><strong>Low GCQ:</strong> You are relatively aligned. Protect and deepen that alignment.</li>' +
+      '</ul>' +
+      '<p style="margin-top:0.75rem;color:#22d3ee;font-size:0.85rem;">Once you calculate your GCQ, this plan will update with specific guidance and a radar breakdown.</p>';
+    return;
+  }
+
+  var level = gcq.level; // "high", "moderate", "low"
+  var title = "Your GCQ Action Plan";
+  var body = "";
+  var bullets = "";
+
+  if (level === "high") {
+    body =
+      "Your Golden Cage Quotient is <strong>high</strong>. External pressure, status, and structural expectations are driving your career more than your inner purpose. The objective now is not to resign overnight, but to create space for honest diagnosis and future pivots.";
+    bullets =
+      "<li>Explicitly name your Golden Cage patterns (status, Sacred Debt, conformity) using your radar chart.</li>" +
+      "<li>Block a small, recurring time window each week that is not owned by your current employer or CV.</li>" +
+      "<li>Commit to completing Step 2 (Catalyst Conversations) within the next 7 days.</li>" +
+      "<li>Share your GCQ insights with one trusted person who will hold you to your future self.</li>";
+  } else if (level === "moderate") {
+    body =
+      "Your Golden Cage Quotient is <strong>moderate</strong>. You are living in tension between the Golden Cage and your desire for purpose. You are not fully trapped, but drifting is dangerous if you do nothing.";
+    bullets =
+      "<li>Circle the 2–3 axes on your radar chart where you feel the most inner friction.</li>" +
+      "<li>Design one small experiment at work that moves you slightly closer to your Ethical Tug.</li>" +
+      "<li>Use Step 2 (Catalyst Conversations) to turn vague restlessness into a precise Ethical Tug statement.</li>" +
+      "<li>Start a simple log in the Review tab whenever you notice Golden Cage decisions.</li>";
+  } else { // low
+    body =
+      "Your Golden Cage Quotient is <strong>low</strong>. You are relatively purpose-aligned already. The goal is to protect this alignment and deepen your contribution with more structural integrity.";
+    bullets =
+      "<li>Note which axes on your radar chart are already close to the center (low Golden Cage) and why.</li>" +
+      "<li>Identify one area where you still feel some compromise and name it clearly.</li>" +
+      "<li>Use Step 2 to sharpen your Ethical Tug so that your future choices stay anchored.</li>" +
+      "<li>Design one practice or boundary that will prevent future drift back into the Golden Cage.</li>";
+  }
+
+  // Axis breakdown table (documenting the radar plot numerically + in words)
+  var axes = (gcq && gcq.axes) ? gcq.axes : null;
+
+  var breakdownHTML = "";
+  if (axes) {
+    breakdownHTML +=
+      '<h4 style="margin-top:1rem;margin-bottom:0.4rem;font-size:0.9rem;color:#e5e7eb;">Radar Breakdown</h4>' +
+      '<p style="margin:0 0 0.5rem;color:#94a3b8;font-size:0.8rem;">Each axis below corresponds to one spoke on your radar plot. Higher scores indicate stronger Golden Cage pressure on that dimension.</p>' +
+      '<table style="width:100%;border-collapse:collapse;font-size:0.8rem;color:#cbd5e1;">' +
+      '<thead>' +
+      '<tr>' +
+      '<th style="text-align:left;border-bottom:1px solid #1f2937;padding:0.25rem 0.25rem;">Dimension</th>' +
+      '<th style="text-align:center;border-bottom:1px solid #1f2937;padding:0.25rem 0.25rem;">Score (0–5)</th>' +
+      '<th style="text-align:left;border-bottom:1px solid #1f2937;padding:0.25rem 0.25rem;">Interpretation</th>' +
+      '</tr>' +
+      '</thead>' +
+      '<tbody>';
+
+    var meta = [
+      {
+        key: "status_focus",
+        label: "Status Focus (ROI)",
+        desc: "How strongly status, salary and prestige dominate over purpose."
+      },
+      {
+        key: "external_pressure",
+        label: "External Pressure (Sacred Debt)",
+        desc: "How much family, social or institutional expectations drive your choices."
+      },
+      {
+        key: "hollowness",
+        label: "Misalignment & Hollowness",
+        desc: "The felt gap between your daily work and what you truly value."
+      },
+      {
+        key: "no_why",
+        label: "Purpose Ambiguity (No WHY)",
+        desc: "Lack of a clear ethical problem you feel responsible for."
+      },
+      {
+        key: "no_who",
+        label: "Abstract Focus (No WHO)",
+        desc: "Lack of a clear community or ecosystem you want to serve."
+      },
+      {
+        key: "path_conformity",
+        label: "Path Conformity (Generic HOW)",
+        desc: "Extent to which you’re following a generic template instead of an Adjacent Role."
+      }
+    ];
+
+    for (var i = 0; i < meta.length; i++) {
+      var m = meta[i];
+      var raw = axes[m.key];
+      var score = (typeof raw === "number") ? raw : null;
+      var scoreText = (score === null) ? "-" : score.toFixed(1);
+      var band = (score === null) ? "Not measured" : axisBand(score);
+
+      breakdownHTML +=
+        '<tr>' +
+        '<td style="vertical-align:top;padding:0.3rem 0.25rem 0.4rem 0.25rem;">' +
+        '<div style="font-weight:600;color:#e5e7eb;">' + m.label + '</div>' +
+        '<div style="color:#94a3b8;font-size:0.75rem;margin-top:0.1rem;">' + m.desc + '</div>' +
+        '</td>' +
+        '<td style="vertical-align:top;text-align:center;padding:0.3rem 0.25rem 0.4rem 0.25rem;">' +
+        scoreText +
+        '</td>' +
+        '<td style="vertical-align:top;padding:0.3rem 0.25rem 0.4rem 0.25rem;color:#e5e7eb;">' +
+        band +
+        '</td>' +
+        '</tr>';
+    }
+
+    breakdownHTML += '</tbody></table>';
+  } else {
+    breakdownHTML +=
+      '<h4 style="margin-top:1rem;margin-bottom:0.4rem;font-size:0.9rem;color:#e5e7eb;">Radar Breakdown</h4>' +
+      '<p style="margin:0;color:#94a3b8;font-size:0.8rem;">Run the GCQ assessment in the Assessment tab to see a detailed breakdown of each axis here.</p>';
+  }
+
+  // Final Plan tab HTML
+  planBox.innerHTML =
+    '<h3 style="margin-top:0;margin-bottom:0.5rem;font-size:1rem;color:#fbbf24;">' + title + '</h3>' +
+    '<p style="margin-bottom:0.75rem;color:#cbd5e1;font-size:0.9rem;">' + body + '</p>' +
+    '<ul style="margin:0.5rem 0 0.25rem 1.2rem;color:#cbd5e1;font-size:0.85rem;">' + bullets + '</ul>' +
+    '<p style="margin-top:0.75rem;color:#22d3ee;font-size:0.85rem;">Your next move is to continue into Step 2 (Catalyst Conversations) and turn this awareness into a clear Ethical Tug.</p>' +
+    breakdownHTML;
+}
+
 
   // Expose for reuse if needed
   window.updateGCQPlan = updateGCQPlanInternal;
