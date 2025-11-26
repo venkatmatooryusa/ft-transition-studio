@@ -1,1 +1,125 @@
+.ft-header {
+  background: #020617;
+  border-bottom: 1px solid #1f2937;
+}
+
+.ft-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+.ft-header h1 {
+  font-size: 1.5rem;
+  color: #fbbf24;
+}
+
+.ft-header p {
+  color: #9ca3af;
+  margin-top: 0.25rem;
+}
+
+/* Layout */
+.ft-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr 320px;
+  min-height: calc(100vh - 72px);
+}
+
+/* Left nav */
+.ft-nav {
+  background: #020617;
+  border-right: 1px solid #1f2937;
+  padding: 1rem 0.5rem;
+}
+
+.ft-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ft-nav-item {
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #e5e7eb;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.ft-nav-item.active {
+  background: #0f172a;
+  color: #fbbf24;
+}
+
+/* Main */
+.ft-main {
+  padding: 1.5rem;
+  max-width: 900px;
+}
+
+/* Aside */
+.ft-aside {
+  border-left: 1px solid #1f2937;
+  background: #020617;
+  padding: 1.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.ft-aside h2 {
+  font-size: 1rem;
+  color: #22d3ee;
+  margin-bottom: 0.75rem;
+}
+
+/* Step wrapper */
+.ft-step header {
+  margin-bottom: 1rem;
+}
+
+.ft-step header h1 {
+  font-size: 1.3rem;
+  color: #fbbf24;
+}
+
+.ft-step header p {
+  color: #9ca3af;
+}
+
+/* Tabs inside steps */
+.ft-step-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.ft-step-tabs button {
+  border: 1px solid #1f2937;
+  background: #020617;
+  color: #e5e7eb;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.ft-step-tabs button.active {
+  background: #fbbf24;
+  color: #020617;
+  border-color: #fbbf24;
+}
+
+.ft-step-panel {
+  display: none;
+}
+
+.ft-step-panel.active {
+  display: block;
+}
 
