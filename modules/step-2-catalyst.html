@@ -1,6 +1,262 @@
-<section class="ft-step">
+<section id="step-2" class="ft-step">
   <header>
-    <h1>Step 2 – Coming Soon</h1>
-    <p>This module will be added shortly.</p>
+    <h1>Step 2 · Catalyst Conversations</h1>
+    <p>Triangulate your Ethical Tug through injustice, natural compulsion, and chosen contribution.</p>
   </header>
+
+  <div class="ft-step-tabs">
+    <button data-tab="conversations" class="active">Conversations</button>
+    <button data-tab="synthesis">Synthesis</button>
+    <button data-tab="review">Review</button>
+  </div>
+
+  <!-- STYLES LOCAL TO THIS STEP -->
+  <style>
+    .catalyst-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 900px) {
+      .catalyst-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .catalyst-card {
+      background: #020617;
+      border-radius: 0.75rem;
+      border: 1px solid #1e293b;
+      padding: 1rem;
+    }
+
+    .catalyst-card h3 {
+      font-size: 1rem;
+      color: #fbbf24;
+      margin-bottom: 0.25rem;
+    }
+
+    .catalyst-card h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+    }
+
+    .catalyst-card p {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      margin-bottom: 0.5rem;
+    }
+
+    .catalyst-textarea {
+      width: 100%;
+      min-height: 90px;
+      resize: vertical;
+      border-radius: 0.5rem;
+      border: 1px solid #1f2937;
+      background: #020617;
+      color: #e5e7eb;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .catalyst-label {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .catalyst-select {
+      width: 100%;
+      border-radius: 0.5rem;
+      border: 1px solid #1f2937;
+      background: #020617;
+      color: #e5e7eb;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .catalyst-button-primary {
+      margin-top: 1rem;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      border: none;
+      background: #fbbf24;
+      color: #020617;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .catalyst-button-primary:hover {
+      background: #facc15;
+    }
+
+    .catalyst-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-top: 0.35rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .catalyst-pill {
+      border-radius: 999px;
+      border: 1px solid #1f2937;
+      padding: 0.15rem 0.55rem;
+      font-size: 0.75rem;
+      color: #cbd5e1;
+    }
+
+    .catalyst-pill span {
+      opacity: 0.7;
+    }
+
+    .catalyst-synthesis-box {
+      background: #020617;
+      border-radius: 0.75rem;
+      border: 1px solid #1e293b;
+      padding: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .catalyst-synthesis-box textarea {
+      width: 100%;
+      min-height: 80px;
+      resize: vertical;
+      border-radius: 0.5rem;
+      border: 1px solid #1f2937;
+      background: #020617;
+      color: #e5e7eb;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .catalyst-note {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 0.5rem;
+    }
+  </style>
+
+  <!-- PANEL 1: CONVERSATIONS -->
+  <div class="ft-step-panel active" data-panel="conversations">
+    <div class="catalyst-grid">
+
+      <!-- 1. ETHICAL TUG -->
+      <div class="catalyst-card">
+        <h4>Lens 1</h4>
+        <h3>The Ethical Tug</h3>
+        <p>
+          Out of all the injustices and inefficiencies in the world, which one makes you feel a genuine,
+          persistent ethical tug — so strong that ignoring it would feel like a failure of your own character?
+        </p>
+        <label class="catalyst-label" for="catalyst-ethical-tug">
+          Describe that injustice in your own words:
+        </label>
+        <textarea id="catalyst-ethical-tug" class="catalyst-textarea"
+          placeholder="e.g., &quot;High-potential small entrepreneurs remain invisible to capital and structure, despite carrying the real economy.&quot;"></textarea>
+      </div>
+
+      <!-- 2. UNIQUE COMPULSION -->
+      <div class="catalyst-card">
+        <h4>Lens 2</h4>
+        <h3>The Unique Compulsion</h3>
+        <p>
+          What specific aspect of that injustice do you personally feel compelled to correct, even if you weren’t paid?
+          What unpaid, persistent effort do you already make—do you naturally clarify, sort, protect, connect, or build bridges?
+        </p>
+        <label class="catalyst-label" for="catalyst-compulsion">
+          Describe how you already lean in, even without rewards:
+        </label>
+        <textarea id="catalyst-compulsion" class="catalyst-textarea"
+          placeholder="e.g., &quot;I keep turning messy financial data into clear narratives for founders, even outside of my job.&quot;"></textarea>
+
+        <div class="catalyst-pill-row">
+          <div class="catalyst-pill"><span>Clarify complexity</span></div>
+          <div class="catalyst-pill"><span>Connect people</span></div>
+          <div class="catalyst-pill"><span>Protect the vulnerable</span></div>
+          <div class="catalyst-pill"><span>Design better systems</span></div>
+        </div>
+      </div>
+
+      <!-- 3. CONTRIBUTION / WEAPONIZED SKILL -->
+      <div class="catalyst-card">
+        <h4>Lens 3</h4>
+        <h3>The Contribution</h3>
+        <p>
+          How do you uniquely want to contribute to solving this? Which capability do you want to weaponize—what do you want
+          to become exceptionally strong at, in service of this injustice?
+        </p>
+        <label class="catalyst-label" for="catalyst-contribution">
+          Describe the kind of contribution you want to make:
+        </label>
+        <textarea id="catalyst-contribution" class="catalyst-textarea"
+          placeholder="e.g., &quot;I want to design capital + clarity engines that make SME growth structurally inevitable.&quot;"></textarea>
+
+        <label class="catalyst-label" for="catalyst-skill">
+          Choose the primary capability you want to weaponize:
+        </label>
+        <select id="catalyst-skill" class="catalyst-select">
+          <option value="">Select a capability…</option>
+          <option value="computational rigor">Computational rigor</option>
+          <option value="compelling narrative">Compelling narrative</option>
+          <option value="complex system design">Complex system design</option>
+          <option value="meticulous preservation">Meticulous preservation</option>
+          <option value="pattern recognition">Pattern recognition</option>
+          <option value="community-building">Community-building</option>
+          <option value="capital structuring">Capital structuring</option>
+          <option value="bridge-building across silos">Bridge-building across silos</option>
+        </select>
+      </div>
+
+    </div>
+
+    <button id="catalyst-synthesize-btn" class="catalyst-button-primary">
+      Synthesize My Ethical Tug
+    </button>
+    <p class="catalyst-note">
+      This will combine all three lenses into a draft Ethical Tug statement you can refine and save.
+    </p>
+  </div>
+
+  <!-- PANEL 2: SYNTHESIS -->
+  <div class="ft-step-panel" data-panel="synthesis">
+    <div class="catalyst-synthesis-box">
+      <h3 style="font-size:1rem;color:#fbbf24;margin-bottom:0.5rem;">Draft Ethical Tug Statement</h3>
+      <p style="font-size:0.85rem;color:#cbd5e1;margin-bottom:0.5rem;">
+        This is a first draft combining the injustice, your unique compulsion, and your chosen contribution.
+        Edit it until it feels true in your own voice.
+      </p>
+      <textarea id="catalyst-ethicalline" placeholder="Your Ethical Tug statement will appear here after synthesis."></textarea>
+      <button id="catalyst-save-btn" class="catalyst-button-primary">
+        Save Ethical Tug
+      </button>
+      <p class="catalyst-note">
+        Once saved, this will appear in your Transition Plan summary and feed into Step 3 (Discover the TRIAD).
+      </p>
+    </div>
+  </div>
+
+  <!-- PANEL 3: REVIEW / NOTES -->
+  <div class="ft-step-panel" data-panel="review">
+    <div class="catalyst-synthesis-box">
+      <h3 style="font-size:1rem;color:#fbbf24;margin-bottom:0.5rem;">Reflections & Notes</h3>
+      <p style="font-size:0.85rem;color:#cbd5e1;margin-bottom:0.5rem;">
+        Use this space to jot down any shifts, doubts, or confirmations you notice as you live with your Ethical Tug over the next weeks.
+      </p>
+      <textarea id="catalyst-review-notes" placeholder="e.g., &quot;I keep noticing I’m drawn to founders’ stories more than corporate strategy.&quot;"></textarea>
+      <button id="catalyst-save-notes-btn" class="catalyst-button-primary">
+        Save Notes
+      </button>
+      <p class="catalyst-note">
+        These notes stay in your Transition Plan so you can see how your tug evolves over time.
+      </p>
+    </div>
+  </div>
 </section>
