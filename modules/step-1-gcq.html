@@ -13,6 +13,324 @@
   <div class="ft-step-panel active" data-panel="assessment">
     <!-- Paste your GCQ Diagnosis HTML+modal here (without <html>, <head>, <body>). -->
     <!-- Use the refined GCQ block we worked on earlier. -->
+       <style>
+    /* GCQ Assessment Internal Styles */
+    .gcq-container {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        color: #e5e7eb;
+    }
+    .gcq-container h2 {
+        color: #fbbf24;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .gcq-question-block {
+        margin-bottom: 20px;
+        background-color: #0f172a;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #1e293b;
+    }
+
+    .gcq-question-block label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 15px;
+        color: #f1f5f9;
+    }
+
+    .gcq-scale {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 5px;
+        color: #94a3b8;
+        font-size: 12px;
+    }
+
+    .gcq-question-block input[type="range"] {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .gcq-button {
+        display: block;
+        width: 100%;
+        padding: 14px;
+        font-size: 17px;
+        font-weight: bold;
+        background-color: #fbbf24;
+        color: #020617;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 20px 0;
+    }
+    .gcq-button:hover {
+        background-color: #facc15;
+    }
+
+    /* Modal */
+    #gcq-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75);
+        display: none;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 40px 20px;
+        overflow-y: auto;
+        z-index: 2000;
+    }
+
+    #gcq-chart-container {
+        background: #0f172a;
+        padding: 25px;
+        border-radius: 12px;
+        max-width: 700px;
+        width: 100%;
+        border: 1px solid #1e293b;
+    }
+
+    .gcq-close-button {
+        float: right;
+        font-size: 26px;
+        font-weight: bold;
+        color: #fbbf24;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+    }
+
+    #gcqChart {
+        width: 100% !important;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    #gcq-interpretation-text {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 16px;
+        color: #e2e8f0;
+    }
+
+    .gcq-interpret-box {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #1e293b;
+        border-radius: 8px;
+        color: #cbd5e1;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+</style>
+
+<div class="gcq-container">
+
+    <h2>GCQ Diagnosis · Golden Cage Quotient Assessment</h2>
+    <p style="text-align:center; font-size:14px; color:#94a3b8;">
+        For each statement, rate your agreement on a 5-point scale.
+    </p>
+
+    <!-- QUESTIONS -->
+    <div class="gcq-question-block">
+        <label>1. My primary career goal is to achieve a high salary and a prestigious title.</label>
+        <div class="gcq-scale"><span>(1) SD</span><span>(3) N</span><span>(5) SA</span></div>
+        <input type="range" id="q1" min="1" max="5" value="3">
+    </div>
+
+    <div class="gcq-question-block">
+        <label>2. I feel a heavy “Sacred Debt” to my family; their expectations guide my career choices.</label>
+        <div class="gcq-scale"><span>(1) SD</span><span>(3) N</span><span>(5) SA</span></div>
+        <input type="range" id="q2" min="1" max="5" value="3">
+    </div>
+
+    <div class="gcq-question-block">
+        <label>3. Despite achievements, my work feels hollow or disconnected from what I value.</label>
+        <div class="gcq-scale"><span>(1) SD</span><span>(3) N</span><span>(5) SA</span></div>
+        <input type="range" id="q3" min="1" max="5" value="3">
+    </div>
+
+    <div class="gcq-question-block">
+        <label>4. I have a crystal-clear understanding of my WHY (ethical pull / injustice).</label>
+        <div class="gcq-scale"><span>(1) SD</span><span>(3) N</span><span>(5) SA</span></div>
+        <input type="range" id="q4" min="1" max="5" value="3">
+    </div>
+
+    <div class="gcq-question-block">
+        <label>5. I know exactly WHO I want to serve.</label>
+        <div class="gcq-scale"><span>(1) SD</span><span>(3) N</span><span>(5) SA</span></div>
+        <input type="range" id="q5" min="1" max="5" value="3">
+    </div>
+
+    <div class="gcq-question-block">
+        <label>6. I am actively building a unique Adjacent Role (HOW), not following a generic path.</label>
+        <div class="gcq-scale"><span>(1) SD</span><span>(3) N</span><span>(5) SA</span></div>
+        <input type="range" id="q6" min="1" max="5" value="3">
+    </div>
+
+    <div class="gcq-question-block">
+        <label>7. My career lacks structural integrity; actions contradict my values.</label>
+        <div class="gcq-scale"><span>(1) SD</span><span>(3) N</span><span>(5) SA</span></div>
+        <input type="range" id="q7" min="1" max="5" value="3">
+    </div>
+
+    <div class="gcq-question-block">
+        <label>8. I would trade ROI prestige for ROP (Return on Purpose), even at lower pay.</label>
+        <div class="gcq-scale"><span>(1) SD</span><span>(3) N</span><span>(5) SA</span></div>
+        <input type="range" id="q8" min="1" max="5" value="3">
+    </div>
+
+    <div class="gcq-question-block">
+        <label>9. I feel trapped by the societal “templatized funnel” of success.</label>
+        <div class="gcq-scale"><span>(1) SD</span><span>(3) N</span><span>(5) SA</span></div>
+        <input type="range" id="q9" min="1" max="5" value="3">
+    </div>
+
+    <div class="gcq-question-block">
+        <label>10. I want surgical utility more than status-driven titles.</label>
+        <div class="gcq-scale"><span>(1) SD</span><span>(3) N</span><span>(5) SA</span></div>
+        <input type="range" id="q10" min="1" max="5" value="3">
+    </div>
+
+    <button class="gcq-button" onclick="calculateGCQ()">Calculate My GCQ</button>
+
+</div>
+
+<!-- MODAL -->
+<div id="gcq-modal-overlay">
+    <div id="gcq-chart-container">
+        <button class="gcq-close-button" onclick="closeGCQModal()">&times;</button>
+        <h2>Your Golden Cage Quotient</h2>
+
+        <canvas id="gcqChart"></canvas>
+        <p id="gcq-interpretation-text"></p>
+
+        <div class="gcq-interpret-box">
+            <h4 style="color:#fbbf24;text-align:center;margin-top:0;">How to Read This</h4>
+            <p>
+                The radar shows six dimensions of the Golden Cage.  
+                Bigger shape → higher misalignment & external pressure.  
+                Smaller shape → stronger purpose alignment.
+            </p>
+        </div>
+
+        <button class="gcq-button" onclick="closeGCQModal()">Close</button>
+    </div>
+</div>
+
+<script>
+(function () {
+    let gcqChartInstance;
+
+    window.closeGCQModal = function () {
+        document.getElementById('gcq-modal-overlay').style.display = 'none';
+    };
+
+    window.calculateGCQ = function () {
+        const vals = [];
+        for (let i = 1; i <= 10; i++) vals.push(parseInt(document.getElementById('q' + i).value));
+
+        // Axes logic
+        const axis1 = (vals[0] + (6 - vals[7])) / 2;
+        const axis2 = (vals[1] + vals[8]) / 2;
+        const axis3 = (vals[2] + vals[6]) / 2;
+        const axis4 = 6 - vals[3];
+        const axis5 = 6 - vals[4];
+        const axis6 = ((6 - vals[5]) + (6 - vals[9])) / 2;
+
+        const scores = [axis1, axis2, axis3, axis4, axis5, axis6];
+        const total = scores.reduce((a,b)=>a+b,0);
+
+        // Interpretation
+        let level = '';
+        let text = '';
+
+        if (total > 21) {
+            level = 'high';
+            text = "Your GCQ is <strong>high</strong>. Status, pressure & expectations dominate your career choices.";
+        } else if (total > 12) {
+            level = 'moderate';
+            text = "Your GCQ is <strong>moderate</strong>. You are between external success and internal purpose.";
+        } else {
+            level = 'low';
+            text = "Your GCQ is <strong>low</strong>. You lean strongly toward purpose-led alignment.";
+        }
+
+        document.getElementById('gcq-interpretation-text').innerHTML = text;
+
+        // Show modal
+        document.getElementById('gcq-modal-overlay').style.display = 'flex';
+
+        // Draw chart
+        const ctx = document.getElementById('gcqChart').getContext('2d');
+
+        if (gcqChartInstance) gcqChartInstance.destroy();
+
+        gcqChartInstance = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    "Status Focus",
+                    "External Pressure",
+                    "Hollowness",
+                    "No WHY",
+                    "No WHO",
+                    "Path Conformity"
+                ],
+                datasets: [{
+                    data: scores,
+                    backgroundColor: 'rgba(251,191,36,0.2)',
+                    borderColor: '#fbbf24',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#fbbf24'
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        min: 0,
+                        max: 5,
+                        ticks: { stepSize: 1 },
+                        grid: { color: "#475569" },
+                        pointLabels: {
+                            color: "#e2e8f0",
+                            font: { size: 13 }
+                        }
+                    }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Pass data back to global TransitionPlan
+        const payload = {
+            axes: {
+                status_focus: axis1,
+                external_pressure: axis2,
+                hollowness: axis3,
+                no_why: axis4,
+                no_who: axis5,
+                path_conformity: axis6
+            },
+            rawAnswers: vals,
+            total,
+            level
+        };
+
+        if (typeof window.handleGCQResult === "function") {
+            window.handleGCQResult(payload);
+        }
+    };
+})();
+</script>
+
   </div>
 
   <div class="ft-step-panel" data-panel="plan">
