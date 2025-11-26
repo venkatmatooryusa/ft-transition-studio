@@ -71,26 +71,48 @@
       synthButton.addEventListener("click", function () {
         console.log("Step 2: Synthesize button clicked");
 
-        var tugText = tugInput ? tugInput.value.trim() : "";
-        var compulsionText = compulsionInput ? compulsionInput.value.trim() : "";
-        var contributionText = contributionInput ? contributionInput.value.trim() : "";
-        var skill = skillSelect ? skillSelect.value.trim() : "";
+        function cleanPhrase(text) {
+          if (!text) return "";
+          // trim spaces and trailing dots
+          text = text.trim();
+          return text.replace(/[.。]+$/, "");
+        }
 
-        var injustice = tugText || "a specific injustice that you can no longer ignore";
-        var compulsion = compulsionText || "a natural tendency to lean in more than required";
-        var contribution = contributionText || "a contribution you feel responsible to make";
-        var weaponSkill = skill || "a capability you want to weaponize";
+        var tugText = cleanPhrase(tugInput ? tugInput.value : "");
+        var compulsionText = cleanPhrase(compulsionInput ? compulsionInput.value : "");
+        var contributionText = cleanPhrase(contributionInput ? contributionInput.value : "");
+        var skill = cleanPhrase(skillSelect ? skillSelect.value : "");
 
-        var draft = "I feel a duty to reduce " + injustice +
-          " by leaning into my natural compulsion to " + compulsion +
-          ", and by intentionally weaponizing " + weaponSkill +
-          " to " + contribution + ".";
+        // Fallbacks if user leaves things blank
+        var injustice = tugText || "a specific injustice that I can no longer ignore";
+        var compulsion = compulsionText || "lean in more than is required when others would step back";
+        var contribution = contributionText || "contribute meaningfully to changing this pattern";
+        var weaponSkill = skill || "a capability I am willing to deliberately master";
+
+        var draft =
+          "I feel a duty to address " + injustice +
+          ", by leaning into my natural tendency to " + compulsion +
+          ", and by developing " + weaponSkill +
+          " so that I can " + contribution + ".";
 
         if (synthOutput) {
           synthOutput.value = draft;
         } else {
           console.warn("Step 2: synthOutput textarea not found.");
         }
+
+        // Switch to Synthesis tab
+        var synthTab = document.querySelector('.ft-step-tabs button[data-tab="synthesis"]');
+        var synthPanel = document.querySelector('.ft-step-panel[data-panel="synthesis"]');
+
+        tabButtons.forEach(function (b) { b.classList.remove("active"); });
+        panels.forEach(function (panel) { panel.classList.remove("active"); });
+
+        if (synthTab) synthTab.classList.add("active");
+        if (synthPanel) synthPanel.classList.add("active");
+      });
+    }
+
 
         // Switch to Synthesis tab
         var synthTab = document.querySelector('.ft-step-tabs button[data-tab="synthesis"]');
