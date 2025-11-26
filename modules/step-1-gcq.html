@@ -223,12 +223,47 @@
     </div>
     <!-- GCQ ASSESSMENT ENDS HERE -->
   </div>
-
-  <div class="ft-step-panel" data-panel="plan">
-    <p>Once you complete the GCQ, this space will offer guidance on how to interpret your profile and what to do in Step 2 (Catalyst Conversations).</p>
+ <!-- GCQ PLAN & REVIEW STARTS HERE -->
+    <div class="ft-step-panel" data-panel="plan">
+    <div id="gcq-plan-content" style="background:#020617;border-radius:0.75rem;border:1px solid #1e293b;padding:1rem;font-size:0.9rem;color:#e5e7eb;">
+      <h3 style="margin-top:0;margin-bottom:0.5rem;font-size:1rem;color:#fbbf24;">Your GCQ Action Plan</h3>
+      <p style="margin-bottom:0.75rem;color:#cbd5e1;">
+        Once you complete the GCQ, this section will translate your Golden Cage profile into a simple action plan.
+      </p>
+      <p style="margin-bottom:0.5rem;color:#94a3b8;font-size:0.85rem;">
+        Complete the assessment in the <strong>Assessment</strong> tab first. Based on whether your GCQ is
+        <em>high</em>, <em>moderate</em>, or <em>low</em>, you’ll see specific guidance here.
+      </p>
+      <ul style="margin:0.5rem 0 0.25rem 1.2rem;color:#cbd5e1;font-size:0.85rem;">
+        <li><strong>High GCQ:</strong> Focus on naming your Golden Cage patterns and protecting time for Step 2.</li>
+        <li><strong>Moderate GCQ:</strong> Start experimenting with small shifts while you clarify your Ethical Tug.</li>
+        <li><strong>Low GCQ:</strong> Use GCQ as a baseline and double down on what is already working.</li>
+      </ul>
+      <p style="margin-top:0.75rem;color:#22d3ee;font-size:0.85rem;">
+        As soon as you calculate your GCQ, this plan will update with tailored text.
+      </p>
+    </div>
   </div>
 
   <div class="ft-step-panel" data-panel="review">
-    <p>Later, you can log reflections on how your Golden Cage Quotient has shifted over time.</p>
+    <div style="background:#020617;border-radius:0.75rem;border:1px solid #1e293b;padding:1rem;font-size:0.9rem;color:#e5e7eb;">
+      <h3 style="margin-top:0;margin-bottom:0.5rem;font-size:1rem;color:#fbbf24;">GCQ Review & Reflections</h3>
+      <p style="margin-bottom:0.5rem;color:#cbd5e1;font-size:0.85rem;">
+        Use this space to record how your Golden Cage experience shows up in real life—moments of conflict, misalignment,
+        or small wins where you resisted the cage.
+      </p>
+      <textarea id="gcq-review-notes"
+        style="width:100%;min-height:120px;border-radius:0.5rem;border:1px solid #1f2937;background:#020617;color:#e5e7eb;padding:0.5rem 0.75rem;font-size:0.9rem;font-family:inherit;"
+        placeholder="e.g., &quot;I noticed that I said yes to a project I didn’t believe in purely because it looked strategic on my CV.&quot;">
+      </textarea>
+      <button id="gcq-save-notes-btn"
+        style="margin-top:0.75rem;padding:0.5rem 1rem;border-radius:999px;border:none;background:#fbbf24;color:#020617;font-size:0.9rem;font-weight:600;cursor:pointer;">
+        Save GCQ Notes
+      </button>
+      <p style="margin-top:0.5rem;color:#64748b;font-size:0.8rem;">
+        Your notes are stored in your Transition Plan (in this browser) so you can revisit them as you move through the later steps.
+      </p>
+    </div>
   </div>
+
 </section>
