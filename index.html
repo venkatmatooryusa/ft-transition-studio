@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Forgotten Tracks · Transition Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/ft-theme.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="ft-header">
+    <div class="ft-header-inner">
+      <h1>Forgotten Tracks · Transition Studio</h1>
+      <p>Shift from ROI to ROP through the 8-step FT system.</p>
+    </div>
+  </header>
+
+  <div class="ft-layout">
+    <nav class="ft-nav">
+      <ul>
+        <li><button data-step="1" class="ft-nav-item active">1 · GCQ Diagnosis</button></li>
+        <li><button data-step="2" class="ft-nav-item">2 · Catalyst Conversations</button></li>
+        <li><button data-step="3" class="ft-nav-item">3 · Discover the TRIAD</button></li>
+        <li><button data-step="4" class="ft-nav-item">4 · T-Shaped Portfolio</button></li>
+        <li><button data-step="5" class="ft-nav-item">5 · The FTP Mandate</button></li>
+        <li><button data-step="6" class="ft-nav-item">6 · Making the Pivot</button></li>
+        <li><button data-step="7" class="ft-nav-item">7 · Strategic Conversations</button></li>
+        <li><button data-step="8" class="ft-nav-item">8 · ROP Audit</button></li>
+      </ul>
+    </nav>
+
+    <main id="step-container" class="ft-main">
+      <p>Loading…</p>
+    </main>
+
+    <aside id="plan-summary" class="ft-aside">
+      <h2>My Transition Plan</h2>
+      <div id="plan-summary-content">
+        <p>Your plan will build here as you move through the steps.</p>
+      </div>
+    </aside>
+  </div>
+
+  <script src="js/state.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/step-1-gcq.js"></script>
+</body>
+</html>
 
