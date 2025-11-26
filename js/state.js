@@ -19,9 +19,11 @@ window.updatePlanSummary = function () {
   if (!el) return;
 
   const gcqLevel = window.TransitionPlan.gcq?.level || "not yet assessed";
+  const ethicalTug = window.TransitionPlan.catalyst?.ethical_tug_statement || "Not yet defined.";
 
   el.innerHTML = `
     <p><strong>GCQ Diagnosis:</strong> ${gcqLevel}</p>
+    <p><strong>Ethical Tug:</strong> ${ethicalTug}</p>
     <p><strong>Mission WHY:</strong> ${window.TransitionPlan.triad.why || 'Not defined yet.'}</p>
     <p><strong>Mission WHO:</strong> ${window.TransitionPlan.triad.who || 'Not defined yet.'}</p>
     <p><strong>Mission HOW:</strong> ${window.TransitionPlan.triad.how || 'Not defined yet.'}</p>
@@ -29,9 +31,7 @@ window.updatePlanSummary = function () {
 };
 
 /**
- * 🔁 This is the global hook that GCQ calls.
- * The GCQ module invokes `window.handleGCQResult(payload)`.
- * We store it and refresh the sidebar here.
+ * GCQ result hook – called from Step 1
  */
 window.handleGCQResult = function (result) {
   window.TransitionPlan.gcq = result;
