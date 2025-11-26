@@ -15,10 +15,7 @@
       });
     });
 
-    window.handleGCQResult = function (result) {
-      window.TransitionPlan.gcq = result;
-      window.updatePlanSummary();
-    };
+    // Nothing else needed here for GCQ wiring:
+    // handleGCQResult is now defined in state.js and will be called from the GCQ script.
   };
 })();
-
