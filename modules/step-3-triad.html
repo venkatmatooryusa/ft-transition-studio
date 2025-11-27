@@ -1,6 +1,177 @@
-<section class="ft-step">
+<section id="step-3" class="ft-step">
   <header>
-    <h1>Step 3 – Coming Soon</h1>
-    <p>This module will be added shortly.</p>
+    <h1>Step 3 · Discover the TRIAD</h1>
+    <p>Translate your Ethical Tug into a structured mission: WHY you exist, WHO you serve, and HOW you contribute.</p>
   </header>
+
+  <style>
+    .triad-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width: 900px) {
+      .triad-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .triad-card {
+      background: #020617;
+      border-radius: 0.75rem;
+      border: 1px solid #1e293b;
+      padding: 1rem;
+    }
+    .triad-card h3 {
+      font-size: 1rem;
+      color: #fbbf24;
+      margin-bottom: 0.25rem;
+    }
+    .triad-card h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+    }
+    .triad-card p {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      margin-bottom: 0.5rem;
+    }
+    .triad-textarea {
+      width: 100%;
+      min-height: 80px;
+      resize: vertical;
+      border-radius: 0.5rem;
+      border: 1px solid #1f2937;
+      background: #020617;
+      color: #e5e7eb;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+    .triad-label {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+    .triad-category-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-top: 0.35rem;
+      margin-bottom: 0.35rem;
+    }
+    .triad-category-pill {
+      border-radius: 999px;
+      border: 1px solid #1f2937;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.75rem;
+      color: #cbd5e1;
+      cursor: pointer;
+      background: #020617;
+    }
+    .triad-category-pill.active {
+      border-color: #fbbf24;
+      background: rgba(251,191,36,0.12);
+      color: #fbbf24;
+    }
+    .triad-button-primary {
+      margin-top: 1rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      border: none;
+      background: #fbbf24;
+      color: #020617;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .triad-button-primary:hover {
+      background: #facc15;
+    }
+    .triad-note {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 0.5rem;
+    }
+  </style>
+
+  <div class="triad-grid">
+    <!-- WHY -->
+    <div class="triad-card">
+      <h4>WHY</h4>
+      <h3>Your Ethical Duty</h3>
+      <p>
+        This is the ethical core of your work—the thing you would feel like you had
+        failed in your character if you ignored. We use your Ethical Tug and the six
+        WHY categories to suggest a starting point.
+      </p>
+      <p style="font-size:0.8rem;color:#94a3b8;margin-bottom:0.25rem;">
+        Suggested WHY category:
+        <strong id="triad-why-category-label">Not yet detected</strong>
+      </p>
+      <div class="triad-category-row">
+        <button type="button" class="triad-category-pill" data-why-category="clarity_synthesis">Clarity &amp; Synthesis</button>
+        <button type="button" class="triad-category-pill" data-why-category="protection_preservation">Protection &amp; Preservation</button>
+        <button type="button" class="triad-category-pill" data-why-category="equity_access">Equity &amp; Access</button>
+        <button type="button" class="triad-category-pill" data-why-category="utility_efficiency">Utility &amp; Efficiency</button>
+        <button type="button" class="triad-category-pill" data-why-category="creation_innovation">Creation &amp; Innovation</button>
+        <button type="button" class="triad-category-pill" data-why-category="aesthetics_experience">Aesthetics &amp; Experience</button>
+      </div>
+      <label class="triad-label" for="triad-why-text">
+        Draft your WHY (you can edit the suggestion below):
+      </label>
+      <textarea id="triad-why-text" class="triad-textarea"
+        placeholder="e.g., &quot;I exist to dismantle structural invisibility for credible small and mid-sized businesses.&quot;"></textarea>
+      <p class="triad-note" id="triad-why-hint">
+        We’ll auto-fill a draft based on your Ethical Tug. You can still rewrite it in your own words.
+      </p>
+    </div>
+
+    <!-- WHO -->
+    <div class="triad-card">
+      <h4>WHO</h4>
+      <h3>The Beneficiary</h3>
+      <p>
+        Who is the specific group, community, or ecosystem that should benefit first and
+        most from your work? Move from &quot;everyone&quot; to a precise segment.
+      </p>
+      <label class="triad-label" for="triad-who-text">
+        Describe your primary WHO:
+      </label>
+      <textarea id="triad-who-text" class="triad-textarea"
+        placeholder="e.g., &quot;First-generation SME founders in India with 20–500 employees who are structurally under-served by mainstream capital and advisory.&quot;"></textarea>
+      <p class="triad-note">
+        You can refine this later in the T-shaped Portfolio and FTP Mandate steps.
+      </p>
+    </div>
+
+    <!-- HOW -->
+    <div class="triad-card">
+      <h4>HOW</h4>
+      <h3>Your Mode of Contribution</h3>
+      <p>
+        How do you want to contribute? Translate your compulsion and chosen capability
+        into an Adjacent Role shape—not a generic job title.
+      </p>
+      <label class="triad-label" for="triad-how-text">
+        Describe your HOW:
+      </label>
+      <textarea id="triad-how-text" class="triad-textarea"
+        placeholder="e.g., &quot;I do this by architecting SME-friendly capital and clarity structures so that credible founders can grow without being swallowed by misaligned capital.&quot;"></textarea>
+      <p class="triad-note">
+        This will feed directly into your T-shaped skills and your first Forgotten Tracks Projects.
+      </p>
+    </div>
+  </div>
+
+  <div style="margin-top:1.25rem;">
+    <button id="triad-save-btn" class="triad-button-primary">
+      Save TRIAD
+    </button>
+    <p class="triad-note">
+      Once saved, your WHY–WHO–HOW TRIAD will appear in your Transition Plan summary and guide the next stages.
+    </p>
+  </div>
 </section>
